@@ -5,13 +5,28 @@ using UnityEngine;
 public class PlayerController : ObjectBase
 {
     public static PlayerController Instance;
+    [SerializeField] float hungry = 100f;
     [SerializeField] float turnSpeed=10;
     [SerializeField] float moveSpeed=1;
+    [SerializeField] float hungrySpeed=2;
+    [SerializeField] float hpSpeed=2;
     CharacterController characterController;
     Transform GetTransform;
     bool isAttacking;
-    float hungry=100f;
-    public float Hungry { get => hungry; set => hungry = value; }
+    public float Hungry { 
+        get => hungry;
+        set 
+        {
+            hungry = value;
+            if (hungry <= 0)
+            {
+                hungry = 0;
+                Hp -= Time.deltaTime * hpSpeed;
+                Debug.Log(Hp);
+            }
+            UI.Instance.HungryUpdate();
+        }
+    }
 
     private void Awake()
     {
@@ -27,6 +42,7 @@ public class PlayerController : ObjectBase
     // Update is called once per frame
     void Update()
     {
+        OnHungryUpdate();
         if (isAttacking)
         {
             GetTransform.localRotation = Quaternion.Slerp(GetTransform.localRotation, targetDirQuaternion, Time.deltaTime * turnSpeed);
@@ -38,10 +54,15 @@ public class PlayerController : ObjectBase
         }
      
     }
+    private void OnHungryUpdate()
+    {
+        Hungry -= Time.deltaTime * hungrySpeed;
+    }
     protected override void OnHpUpdate()
     {
-        
+        UI.Instance.HPUpdate();
     }
+
     Quaternion targetDirQuaternion;
 
 

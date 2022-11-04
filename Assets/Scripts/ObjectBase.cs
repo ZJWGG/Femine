@@ -6,7 +6,7 @@ public class ObjectBase : MonoBehaviour
 {
     [SerializeField]AudioSource audioSource;
     [SerializeField]List<AudioClip> audioClips;
-    [SerializeField] float hp;
+    [SerializeField] float hp=100f;
     public GameObject lootObject;//µôÂäµÄÎïÆ·
 
     public float Hp { 
@@ -14,7 +14,7 @@ public class ObjectBase : MonoBehaviour
         set
         {
             hp = value;
-            if (hp <= 0)
+            if (hp<=0)
             {
                 hp = 0;
                 Dead();
