@@ -26,7 +26,7 @@ public class ObjectBase : MonoBehaviour
         }
     }
 
-    protected void PlayAudio(int Index)
+    public void PlayAudio(int Index)
     {
         audioSource.PlayOneShot(audioClips[Index]);
     }

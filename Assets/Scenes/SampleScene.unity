@@ -1346,6 +1346,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyTags:
   - Tree
+  itemTags:
+  - Wood
 --- !u!1 &1513210244464140 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2563794807974638758, guid: 2441b74fecd2e794989f26be0ddfe1b4, type: 3}
@@ -2418,12 +2420,16 @@ PrefabInstance:
       objectReference: {fileID: 2124078263}
     - target: {fileID: 2562844553435301074, guid: 2441b74fecd2e794989f26be0ddfe1b4, type: 3}
       propertyPath: audioClips.Array.size
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2562844553435301074, guid: 2441b74fecd2e794989f26be0ddfe1b4, type: 3}
       propertyPath: audioClips.Array.data[0]
       value: 
       objectReference: {fileID: 8300000, guid: 46babae6601baff4db1ee64f07944fb5, type: 3}
+    - target: {fileID: 2562844553435301074, guid: 2441b74fecd2e794989f26be0ddfe1b4, type: 3}
+      propertyPath: audioClips.Array.data[1]
+      value: 
+      objectReference: {fileID: 8300000, guid: d43f891ae031d5f468abcdd2f5b45ab5, type: 3}
     - target: {fileID: 2562844553435301078, guid: 2441b74fecd2e794989f26be0ddfe1b4, type: 3}
       propertyPath: audioSource
       value: 

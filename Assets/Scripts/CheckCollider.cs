@@ -11,6 +11,7 @@ public class CheckCollider : MonoBehaviour
     private int damage;
     private bool canAttack;
     [SerializeField] List<string> enemyTags = new List<string>();
+    [SerializeField] List<string> itemTags = new List<string>();
     public void Init(ObjectBase owner,int damage)
     {
         this.owner = owner;
@@ -42,6 +43,12 @@ public class CheckCollider : MonoBehaviour
                 lastAttackObjectList.Add(other.gameObject);
                 other.GetComponent<ObjectBase>().Hurt(damage);
             }
+            return;
+        }
+        if (itemTags.Contains(other.tag))
+        {
+            owner.PlayAudio(1);
+            Destroy(other.gameObject);
         }
     }
 }
