@@ -114,7 +114,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.5
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -158,7 +158,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
+      value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -234,5 +234,5 @@ MonoBehaviour:
   audioClips:
   - {fileID: 8300000, guid: 43f5b73b15fd7b6469dad38d81926fc3, type: 3}
   hp: 100
-  lootObject: {fileID: 0}
+  lootObject: {fileID: 6792563832821615279, guid: 6715f70c73dc74d489eed16dd45f75b8, type: 3}
   animator: {fileID: 1764939708753385403}

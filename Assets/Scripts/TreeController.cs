@@ -18,6 +18,7 @@ public class TreeController : ObjectBase
     }
     protected override void Dead()
     {
+        base.Dead();
         Destroy(gameObject);
     }
 }

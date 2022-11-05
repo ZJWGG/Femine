@@ -33,11 +33,17 @@ public class ObjectBase : MonoBehaviour
     protected virtual void OnHpUpdate() { }
     protected virtual void Dead() 
     {
-
+        if (lootObject!=null)
+        {
+            Instantiate(lootObject,
+                transform.position + new Vector3(Random.Range(-0.5f, 0.5f), Random.Range(1f, 1.5f), Random.Range(-0.5f, 0.5f)),
+                Quaternion.identity,
+                null);
+        }
     }
     public virtual void Hurt(int damage)
     {
-        hp -= damage;
+        Hp -= damage;
     }
 
 
