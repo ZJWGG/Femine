@@ -11,7 +11,7 @@ public class PlayerController : ObjectBase
     [SerializeField] float hungrySpeed=2;
     [SerializeField] float hpSpeed=2;
     CharacterController characterController;
-    Transform GetTransform;
+    public Transform GetTransform;
     bool isAttacking;
     Animator animator;
     int ani_WalkHash;

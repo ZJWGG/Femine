@@ -9,7 +9,7 @@ public class CheckCollider : MonoBehaviour
 {
     private ObjectBase owner;
     private int damage;
-    private bool canAttack;
+    private bool canHit;
     [SerializeField] List<string> enemyTags = new List<string>();
     [SerializeField] List<string> itemTags = new List<string>();
     public void Init(ObjectBase owner,int damage)
@@ -22,21 +22,21 @@ public class CheckCollider : MonoBehaviour
     /// </summary>
     public void StartHit()
     {
-        canAttack = true;
+        canHit = true;
     }
     /// <summary>
     /// 关闭伤害检测
     /// </summary>
     public void StopHit()
     {
-        canAttack = false;
+        canHit = false;
         lastAttackObjectList.Clear();
     }
     private List<GameObject> lastAttackObjectList = new List<GameObject>();
     private void OnTriggerStay(Collider other)
     {
         //允许攻击
-        if (canAttack)
+        if (canHit)
         {
             //此次伤害还没有检测过这个单位&&敌人的标签在敌人列表中
             if (!lastAttackObjectList.Contains(other.gameObject)&&enemyTags.Contains(other.tag)){

@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: -789400600599566986}
   - component: {fileID: 1764939708753385403}
   - component: {fileID: 1443446169193050768}
+  - component: {fileID: 6956099118053676827}
   m_Layer: 0
   m_Name: Tree
   m_TagString: Tree
@@ -35,7 +36,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: -118.795, z: 0}
 --- !u!33 &1169914515578332130
 MeshFilter:
@@ -236,3 +237,19 @@ MonoBehaviour:
   hp: 100
   lootObject: {fileID: 6792563832821615279, guid: 6715f70c73dc74d489eed16dd45f75b8, type: 3}
   animator: {fileID: 1764939708753385403}
+--- !u!208 &6956099118053676827
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6574130012793301959}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 0
+  m_Extents: {x: 0.3, y: 3.5211174, z: 0.3}
+  m_MoveThreshold: 0.1
+  m_Carve: 0
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0.02718217, y: 3.497579, z: 0.02}
+  m_TimeToStationary: 0.5
