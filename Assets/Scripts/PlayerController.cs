@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerController : ObjectBase
 {
     public static PlayerController Instance;
-    [SerializeField] float hungry = 100f;
+    [SerializeField] float hungry;
     [SerializeField] float turnSpeed=10;
     [SerializeField] float moveSpeed=1;
     [SerializeField] float hungrySpeed=2;
@@ -13,6 +13,11 @@ public class PlayerController : ObjectBase
     CharacterController characterController;
     Transform GetTransform;
     bool isAttacking;
+    Animator animator;
+    int ani_WalkHash;
+    int ani_CutHash;
+    [SerializeField] CheckCollider checkCollider;
+
     public float Hungry { 
         get => hungry;
         set 
@@ -22,7 +27,6 @@ public class PlayerController : ObjectBase
             {
                 hungry = 0;
                 Hp -= Time.deltaTime * hpSpeed;
-                Debug.Log(Hp);
             }
             UI.Instance.HungryUpdate();
         }
@@ -31,12 +35,16 @@ public class PlayerController : ObjectBase
     private void Awake()
     {
         Instance = this;
+        checkCollider.Init(this, 30);
     }
     // Start is called before the first frame update
     void Start()
     {
         characterController = GetComponent<CharacterController>();
         GetTransform = GetComponent<Transform>();
+        animator = GetComponent<Animator>();
+        ani_WalkHash = Animator.StringToHash("走路");
+        ani_CutHash = Animator.StringToHash("攻击");
     }
 
     // Update is called once per frame
@@ -73,11 +81,11 @@ public class PlayerController : ObjectBase
         float v = Input.GetAxisRaw("Vertical");
         if (h == 0 && v == 0)
         {
-            AnimatorStringToHash.Instance.IsNotWalking();
+            animator.SetBool(ani_WalkHash, false);
         }
         else
         {
-            AnimatorStringToHash.Instance.IsWalking();
+            animator.SetBool(ani_WalkHash, true);
             targetDirQuaternion = Quaternion.LookRotation(new Vector3(h, 0, v));
             GetTransform.localRotation = Quaternion.Slerp(GetTransform.localRotation, targetDirQuaternion, Time.deltaTime * turnSpeed);
             characterController.SimpleMove(new Vector3(h, 0, v) * moveSpeed) ;
@@ -93,7 +101,7 @@ public class PlayerController : ObjectBase
             {
                 //碰到地面
                 isAttacking = true;
-                AnimatorStringToHash.Instance.IsAttacking();
+                animator.SetTrigger(ani_CutHash);
                 targetDirQuaternion = Quaternion.LookRotation(hitInfo.point-GetTransform.position);
             }
         }
@@ -102,10 +110,12 @@ public class PlayerController : ObjectBase
     private void StartHit()
     {
         PlayAudio(0);
+        checkCollider.StartHit();
     }
     private void StopHit()
     {
         isAttacking = false;
+        checkCollider.StopHit();
     }
     #endregion
 }

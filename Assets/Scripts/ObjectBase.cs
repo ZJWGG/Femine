@@ -6,8 +6,11 @@ public class ObjectBase : MonoBehaviour
 {
     [SerializeField]AudioSource audioSource;
     [SerializeField]List<AudioClip> audioClips;
-    [SerializeField] float hp=100f;
-    public GameObject lootObject;//掉落的物品
+    [SerializeField] float hp;
+    /// <summary>
+    /// 掉落的物品
+    /// </summary>
+    public GameObject lootObject;
 
     public float Hp { 
         get => hp; 
@@ -28,7 +31,14 @@ public class ObjectBase : MonoBehaviour
         audioSource.PlayOneShot(audioClips[Index]);
     }
     protected virtual void OnHpUpdate() { }
-    protected virtual void Dead() { }
+    protected virtual void Dead() 
+    {
+
+    }
+    public virtual void Hurt(int damage)
+    {
+        hp -= damage;
+    }
 
 
 }
