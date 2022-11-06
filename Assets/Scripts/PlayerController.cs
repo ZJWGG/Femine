@@ -13,9 +13,11 @@ public class PlayerController : ObjectBase
     CharacterController characterController;
     public Transform GetTransform;
     bool isAttacking;
+    bool isHurting;
     Animator animator;
     int ani_WalkHash;
     int ani_CutHash;
+    int ani_HurtHash;
     [SerializeField] CheckCollider checkCollider;
 
     public float Hungry { 
@@ -45,22 +47,25 @@ public class PlayerController : ObjectBase
         animator = GetComponent<Animator>();
         ani_WalkHash = Animator.StringToHash("×ßÂ·");
         ani_CutHash = Animator.StringToHash("¹¥»÷");
+        ani_HurtHash = Animator.StringToHash("ÊÜÉË");
     }
 
     // Update is called once per frame
     void Update()
     {
         OnHungryUpdate();
-        if (isAttacking)
-        {
-            GetTransform.localRotation = Quaternion.Slerp(GetTransform.localRotation, targetDirQuaternion, Time.deltaTime * turnSpeed);
-        }
-        else
+        if (!isAttacking)
         {
             Move();
             Attack();
         }
-     
+        else
+        {
+            GetTransform.localRotation = Quaternion.Slerp(GetTransform.localRotation, targetDirQuaternion, Time.deltaTime * turnSpeed);
+
+        }
+        
+
     }
     private void OnHungryUpdate()
     {
@@ -69,6 +74,13 @@ public class PlayerController : ObjectBase
     protected override void OnHpUpdate()
     {
         UI.Instance.HPUpdate();
+    }
+    public override void Hurt(int damage)
+    {
+        base.Hurt(damage);
+        animator.SetTrigger(ani_HurtHash);
+        PlayAudio(2);
+        isHurting = true;
     }
 
     Quaternion targetDirQuaternion;
@@ -116,6 +128,10 @@ public class PlayerController : ObjectBase
     {
         isAttacking = false;
         checkCollider.StopHit();
+    }
+    private void HurtOver()
+    {
+        isHurting = false;
     }
     #endregion
 }

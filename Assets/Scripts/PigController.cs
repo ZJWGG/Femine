@@ -124,6 +124,21 @@ public class PigController : ObjectBase
     {
         return new Vector3(Random.Range(minX, maxX), 0, Random.Range(minZ, maxZ));
     }
+    public override void Hurt(int damage)
+    {
+        if (EnemyState == EnemyState.Die) return;
+        CancelInvoke(nameof(GoMove));//取消切换到延迟状态的延迟调用
+        base.Hurt(damage);
+        if (Hp > 0)//没有死亡，切换到受伤状态
+        {
+            EnemyState = EnemyState.Hurt;
+        }
+    }
+    protected override void Dead()
+    {
+        base.Dead();
+        EnemyState = EnemyState.Die;
+    }
     #region 动画事件
     private void StartHit()
     {
@@ -139,6 +154,10 @@ public class PigController : ObjectBase
         {
             EnemyState = EnemyState.Pursue;
         }
+    }
+    private void Die()
+    {
+        Destroy(gameObject);
     }
     private void HurtOver()
     {
