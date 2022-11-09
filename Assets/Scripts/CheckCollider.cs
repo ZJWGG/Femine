@@ -45,10 +45,16 @@ public class CheckCollider : MonoBehaviour
             }
             return;
         }
+        //检测拾取
         if (itemTags.Contains(other.tag))
         {
-            owner.PlayAudio(1);
-            Destroy(other.gameObject);
+            //将捡到的物品tag转枚举
+            ItemType itemType = System.Enum.Parse<ItemType>(other.tag);
+            if (owner.AddItem(itemType))
+            {
+                owner.PlayAudio(1);
+                Destroy(other.gameObject);
+            }
         }
     }
 }

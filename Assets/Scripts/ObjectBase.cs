@@ -45,6 +45,10 @@ public class ObjectBase : MonoBehaviour
     {
         Hp -= damage;
     }
+    public virtual bool AddItem(ItemType itemType)
+    {
+        return false;
+    }
 
 
 }

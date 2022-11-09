@@ -7,7 +7,7 @@ public class PlayerController : ObjectBase
     public static PlayerController Instance;
     [SerializeField] float hungry;
     [SerializeField] float turnSpeed=10;
-    [SerializeField] float moveSpeed=1;
+    [SerializeField] float moveSpeed;
     [SerializeField] float hungrySpeed=2;
     [SerializeField] float hpSpeed=2;
     CharacterController characterController;
@@ -62,10 +62,7 @@ public class PlayerController : ObjectBase
         else
         {
             GetTransform.localRotation = Quaternion.Slerp(GetTransform.localRotation, targetDirQuaternion, Time.deltaTime * turnSpeed);
-
         }
-        
-
     }
     private void OnHungryUpdate()
     {
@@ -109,6 +106,12 @@ public class PlayerController : ObjectBase
     {
         if (Input.GetMouseButton(0))
         {
+            //当前鼠标正在交互UI
+            if (UnityEngine.EventSystems.EventSystem.current.IsPointerOverGameObject())
+            {
+                return;
+            }
+        
             if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out RaycastHit hitInfo, 100f, LayerMask.GetMask("Ground")))
             {
                 //碰到地面
@@ -117,6 +120,11 @@ public class PlayerController : ObjectBase
                 targetDirQuaternion = Quaternion.LookRotation(hitInfo.point-GetTransform.position);
             }
         }
+    }
+    public override bool AddItem(ItemType itemType)
+    {
+        //检测背包能不能放下
+        return UI_Bag.Instance.AddItem(itemType);
     }
     #region 动画事件
     private void StartHit()
