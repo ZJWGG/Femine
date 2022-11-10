@@ -14,6 +14,7 @@ public class PlayerController : ObjectBase
     public Transform GetTransform;
     bool isAttacking;
     bool isHurting;
+    public bool isDraging;
     Animator animator;
     int ani_WalkHash;
     int ani_CutHash;
@@ -106,8 +107,8 @@ public class PlayerController : ObjectBase
     {
         if (Input.GetMouseButton(0))
         {
-            //当前鼠标正在交互UI
-            if (UnityEngine.EventSystems.EventSystem.current.IsPointerOverGameObject())
+            //当前在拖拽物品||当前鼠标正在交互UI
+            if (isDraging||UnityEngine.EventSystems.EventSystem.current.IsPointerOverGameObject())
             {
                 return;
             }
@@ -125,6 +126,25 @@ public class PlayerController : ObjectBase
     {
         //检测背包能不能放下
         return UI_Bag.Instance.AddItem(itemType);
+    }
+    public bool UseItem(ItemType itemType)
+    {
+        switch (itemType)
+        {
+            case ItemType.Meat:
+                Hp += 10;
+                hungry += 20;
+                return true;
+            case ItemType.CookedMeat:
+                Hp += 20;
+                hungry += 40;
+                return true;
+            case ItemType.Wood:
+                Hp -= 20;
+                hungry += 20;
+                return true;
+        }
+        return false;
     }
     #region 动画事件
     private void StartHit()

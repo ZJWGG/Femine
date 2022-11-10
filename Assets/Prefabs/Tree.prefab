@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 1764939708753385403}
   - component: {fileID: 1443446169193050768}
   - component: {fileID: 6956099118053676827}
-  - component: {fileID: 719818670}
+  - component: {fileID: 8001157718262235384}
   m_Layer: 0
   m_Name: Tree
   m_TagString: Tree
@@ -135,7 +135,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94a95f1a2ea4c214289625d56db2e61f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  audioSource: {fileID: 719818670}
+  audioSource: {fileID: 8001157718262235384}
   audioClips:
   - {fileID: 8300000, guid: 43f5b73b15fd7b6469dad38d81926fc3, type: 3}
   hp: 100
@@ -157,7 +157,7 @@ NavMeshObstacle:
   m_CarveOnlyStationary: 1
   m_Center: {x: 0.02718217, y: 3.497579, z: 0.02}
   m_TimeToStationary: 0.5
---- !u!82 &719818670
+--- !u!82 &8001157718262235384
 AudioSource:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -169,7 +169,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 0.505
+  m_Volume: 1
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -213,7 +213,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
+      value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0

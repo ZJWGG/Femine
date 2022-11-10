@@ -25,7 +25,7 @@ RenderSettings:
   m_AmbientGroundColor: {r: 0.047, g: 0.043, b: 0.035, a: 1}
   m_AmbientIntensity: 1
   m_AmbientMode: 0
-  m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
+  m_SubtractiveShadowColor: {r: 0, g: 0, b: 0, a: 1}
   m_SkyboxMaterial: {fileID: 10304, guid: 0000000000000000f000000000000000, type: 0}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
@@ -559,6 +559,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hpImage: {fileID: 38924856}
   hungryImage: {fileID: 1618299569}
+  timeStateImage: {fileID: 922492704}
+  dayNumsText: {fileID: 1271092550}
+  dayStateSprites:
+  - {fileID: 21300000, guid: d7338fe0770c8da4a98c9f25e777d597, type: 3}
+  - {fileID: 21300000, guid: 808319d71a2746e47a3160904af14506, type: 3}
 --- !u!1001 &637291276
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -717,7 +722,7 @@ Light:
   serializedVersion: 10
   m_Type: 1
   m_Shape: 0
-  m_Color: {r: 1, g: 0.95686275, b: 0.8392157, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Intensity: 1
   m_Range: 10
   m_SpotAngle: 30
@@ -797,7 +802,7 @@ GameObject:
   - component: {fileID: 884398809}
   m_Layer: 6
   m_Name: Plane
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
@@ -1582,6 +1587,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2035503958}
   - component: {fileID: 2035503957}
+  - component: {fileID: 2035503959}
   m_Layer: 0
   m_Name: Manager
   m_TagString: Untagged
@@ -1608,9 +1614,9 @@ MonoBehaviour:
   - {fileID: 21300000, guid: f4a8b0210fea5d54b8fb98504133cf8d, type: 3}
   itemPrefabs:
   - {fileID: 34349922745932947, guid: 972b47227d4434b4e86f88cf2d21c5f8, type: 3}
-  - {fileID: 34349922745932947, guid: 972b47227d4434b4e86f88cf2d21c5f8, type: 3}
+  - {fileID: 34349922745932947, guid: c55f3b8ee3c95fb4c91df4e678ce5508, type: 3}
   - {fileID: 6792563832821615279, guid: 6715f70c73dc74d489eed16dd45f75b8, type: 3}
-  - {fileID: 6792563832821615279, guid: 6715f70c73dc74d489eed16dd45f75b8, type: 3}
+  - {fileID: 1053913605158551260, guid: b13dd32739e8bf1439758c262c8cc195, type: 3}
 --- !u!4 &2035503958
 Transform:
   m_ObjectHideFlags: 0
@@ -1626,6 +1632,23 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2035503959
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2035503956}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a00c5158aed440409914d7fff7c0f3b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sunLight: {fileID: 705507994}
+  dayTime: 10
+  dayToNightTime: 20
+  nightTime: 10
+  nightToDayTime: 20
 --- !u!1 &2124078259
 GameObject:
   m_ObjectHideFlags: 0
@@ -1707,6 +1730,8 @@ MonoBehaviour:
   itemTags:
   - Wood
   - Meat
+  - Campfire
+  - CookedMeat
 --- !u!1 &1513210244464140 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2563794807974638758, guid: 2441b74fecd2e794989f26be0ddfe1b4, type: 3}
@@ -1827,6 +1852,22 @@ CapsuleCollider:
   m_Height: 1
   m_Direction: 1
   m_Center: {x: 0, y: 0.5, z: 0}
+--- !u!208 &95659938408889609
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1513210244464140}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 0
+  m_Extents: {x: 0.00001, y: 0.5, z: 0.00001}
+  m_MoveThreshold: 0.1
+  m_Carve: 0
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0.5, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!1001 &2562844553086683818
 PrefabInstance:
   m_ObjectHideFlags: 0
